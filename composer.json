@@ -1,5 +1,5 @@
 {
-  "name": "folbert/fewbricks",
+  "name": "macherjek1/fewbricks",
   "type": "wordpress-plugin",
   "description": "Modular system for Advanced Custom Fields",
   "keywords": ["acf","advanced custom fields", "wordpress", "modules", "reusable"],
