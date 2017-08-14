@@ -88,7 +88,7 @@ class fewbricks {
     }
 
 
-    private function get_template_path($path) {
+    private static function get_template_path($path) {
         $filepath = $path . '/common-fields/init.php';
 
         // Check if file is inside child theme
