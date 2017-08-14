@@ -75,10 +75,9 @@ class fewbricks {
 
         if (!helpers\use_acf_json() || $fewbricks_save_json === true) {
 
-            $project_files_base_path = apply_filters(
-                'fewbricks/project_files_base_path',
-                get_stylesheet_directory() . '/fewbricks'
-            );
+            $project_files_base_path = self::get_template_path(apply_filters(
+                'fewbricks/project_files_base_path', '/fewbricks'
+            ));
 
             require($project_files_base_path . '/common-fields/init.php');
             require($project_files_base_path . '/field-groups/init.php');
@@ -86,7 +85,22 @@ class fewbricks {
         }
 
         self::do_developer_mode();
+    }
 
+
+    private function get_template_path($path) {
+        $filepath = $path . '/common-fields/init.php';
+
+        // Check if file is inside child theme
+        if(file_exists(get_stylesheet_directory() . $filepath)) {
+            return get_stylesheet_directory() .'/'. $path;
+          // Check if file is inside main theme
+        } elseif(file_exists(get_template_directory() . $filepath)) {
+              return get_template_directory() .'/'. $path;
+        }
+
+      // return plugin path
+      return plugin_dir_path(__FILE__) . '/' . $path;
     }
 
     /**
