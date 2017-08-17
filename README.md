@@ -25,6 +25,9 @@ Composer:
 
 ## Release History
 
+* 2.0.1
+  * Version Bump
+
 * 2.0.0
 	* Added Child Theme Support
   * display => block as default

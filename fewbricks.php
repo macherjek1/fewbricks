@@ -1,11 +1,10 @@
 <?php
-
 /*
 Plugin Name: Fewbricks
 Plugin URI: https://github.com/macherjek1/fewbricks
 Description: A module extension to Advanced Custom Fields
 Author: Björn Folbert
-Version: 2.0.0
+Version: 2.0.1
 Author URI: http://folbert.com
 License: GPLv3
 */
@@ -16,7 +15,6 @@ if (!defined('ABSPATH')) {
 }
 
 $fewbricks_lib_path = plugin_dir_path(__FILE__) . 'lib/';
-
 require_once($fewbricks_lib_path . 'fewbricks.php');
 
 add_action('after_setup_theme', function() {
