@@ -569,12 +569,9 @@ class brick
     {
 
         if($template_base_path === false) {
-
-            $template_base_path = apply_filters(
-                'fewbricks/brick/brick_template_base_path',
-                get_stylesheet_directory() . '/fewbricks/bricks/'
-            );
-
+            $template_base_path = \fewbricks\helpers\get_template_path(apply_filters(
+                'fewbricks/brick/brick_template_base_path', 'fewbricks/bricks/'
+            ));
         }
 
         $template_files_extension = apply_filters(
@@ -604,10 +601,10 @@ class brick
 
         if (!empty($this->brick_layouts)) {
 
-            $template_base_path = apply_filters(
-                'fewbricks/brick/brick_layout_base_path',
-                get_stylesheet_directory() . '/fewbricks/brick-layouts'
-            );
+            $template_base_path = \fewbricks\helpers\get_template_path(apply_filters(
+                  'fewbricks/brick/brick_layout_base_path',
+                  '/fewbricks/brick-layouts'
+            ));
 
             foreach ($this->brick_layouts AS $brick_layout) {
 

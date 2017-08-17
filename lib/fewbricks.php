@@ -15,6 +15,9 @@ class fewbricks {
      */
     private static $messages;
 
+
+    private static $project_files_base_path;
+
     /**
      *
      */
@@ -67,6 +70,12 @@ class fewbricks {
         $fewbricks_lib_dir_path = __DIR__ . '/';
 
         require($fewbricks_lib_dir_path . 'helpers.php');
+
+        $project_files_base_path = helpers\get_template_path(apply_filters(
+            'fewbricks/project_files_base_path', 'fewbricks'
+        ));
+        self::$project_files_base_path = $project_files_base_path;
+
         require($fewbricks_lib_dir_path . 'brick.php');
         require($fewbricks_lib_dir_path . 'acf/field-group.php');
         require($fewbricks_lib_dir_path . 'acf/layout.php');
@@ -75,32 +84,12 @@ class fewbricks {
 
         if (!helpers\use_acf_json() || $fewbricks_save_json === true) {
 
-            $project_files_base_path = self::get_template_path(apply_filters(
-                'fewbricks/project_files_base_path', '/fewbricks'
-            ));
-
             require($project_files_base_path . '/common-fields/init.php');
             require($project_files_base_path . '/field-groups/init.php');
 
         }
 
         self::do_developer_mode();
-    }
-
-
-    private static function get_template_path($path) {
-        $filepath = $path . '/common-fields/init.php';
-
-        // Check if file is inside child theme
-        if(file_exists(get_stylesheet_directory() . $filepath)) {
-            return get_stylesheet_directory() .'/'. $path;
-          // Check if file is inside main theme
-        } elseif(file_exists(get_template_directory() . $filepath)) {
-              return get_template_directory() .'/'. $path;
-        }
-
-      // return plugin path
-      return plugin_dir_path(__FILE__) . '/' . $path;
     }
 
     /**
@@ -137,27 +126,16 @@ class fewbricks {
      */
     private static function autoload_brick($file_name)
     {
-
-        $project_files_base_path = apply_filters(
-            'fewbricks/project_files_base_path',
-            get_stylesheet_directory() . '/fewbricks'
-        );
-
-        $path = $project_files_base_path . '/bricks/' . $file_name;
+        $path = self::$project_files_base_path . '/bricks/' . $file_name;
 
         if(is_file($path)) {
-
             include($path);
-
         } else {
-
-            wp_die('
-              <h1>Error message from Fewbricks.</h1>
-              <p>Could not locate brick file ' . $path . '.</p>
-            ');
-
+            // wp_die('
+            //   <h1>Error message from Fewbricks.</h1>
+            //   <p>Could not locate brick file ' . $path . '.</p>
+            // ');
         }
-
     }
 
     /**
@@ -165,12 +143,11 @@ class fewbricks {
      */
     private static function autoload_field($file_name)
     {
-
         $file_found = false;
 
         // Lets first look at the custom lib directory in case custom fields were created
         // to overrule the one that came with Fewbricks.
-        $template_path = get_stylesheet_directory() . '/fewbricks/acf/fields/' . $file_name;
+        $template_path = self::$project_files_base_path . '/acf/fields/' . $file_name;
 
         if (is_file($template_path)) {
 
@@ -305,27 +282,7 @@ class fewbricks {
      */
     private static function fewbricks_template_dir_exists()
     {
-
-        $project_files_base_path = apply_filters(
-            'fewbricks/project_files_base_path',
-            get_stylesheet_directory() . '/fewbricks'
-        );
-
-        $fewbricks_template_dir_exists = file_exists($project_files_base_path);
-
-        if(!$fewbricks_template_dir_exists) {
-            // Make sure that the fewbricks/fewbricks-directory has been moved to the template directory.
-
-            add_action('admin_notices', function () {
-
-                echo self::$messages['fewbricks_template_dir_missing'];
-
-            });
-
-        }
-
-        return $fewbricks_template_dir_exists;
-
+      return true;
     }
 
     /**

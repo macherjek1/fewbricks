@@ -23,7 +23,7 @@ class layout
             'key' => $key,
             'name' => $name,
             'label' => $label,
-            'display' => 'row',
+            'display' => 'block',
             'min' => '',
             'max' => '',
             'sub_fields' => []
