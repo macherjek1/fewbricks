@@ -3,6 +3,7 @@
 namespace fewbricks\bricks;
 
 use fewbricks\acf as acf;
+use fewbricks\helpers\PathHelper as PathHelper;
 
 /**
  * Class brick
@@ -567,21 +568,8 @@ class brick
      */
     protected function get_brick_template_html($template_base_path = false, $data = [])
     {
-
-        if($template_base_path === false) {
-            $template_base_path = \fewbricks\helpers\get_template_path(apply_filters(
-                'fewbricks/brick/brick_template_base_path', 'fewbricks/bricks/'
-            ));
-        }
-
-        $template_files_extension = apply_filters(
-            'fewbricks/brick/brick_template_file_extension',
-            '.template.php'
-        );
-
-        $template_path = $template_base_path .
-            str_replace('_', '-', \fewbricks\helpers\get_real_class_name($this)) .
-            $template_files_extension;
+        $template_path = PathHelper::getInstance()
+            ->get_template('bricks/' . str_replace('_', '-', \fewbricks\helpers\get_real_class_name($this)) . '.template.php');
 
         ob_start();
 
@@ -598,40 +586,22 @@ class brick
      */
     public function get_brick_layouted_html($html)
     {
-
         if (!empty($this->brick_layouts)) {
 
-            $template_base_path = \fewbricks\helpers\get_template_path(apply_filters(
-                  'fewbricks/brick/brick_layout_base_path',
-                  '/fewbricks/brick-layouts'
-            ));
+            $template_base_path = PathHelper::getInstance()->get_template_path('brick-layouts');
 
             foreach ($this->brick_layouts AS $brick_layout) {
 
-                if(substr($brick_layout, -5) === '.twig') {
+                ob_start();
 
-                    $html = \Timber::compile($template_base_path . '/' . $brick_layout, [
-                        'html' => $html,
-                        'this' => $this
-                    ]);
+                /** @noinspection PhpIncludeInspection */
+                include(PathHelper::getInstance()->get_template('brick-layouts/' . $brick_layout . '.php'));
 
-                } else {
-
-                    ob_start();
-
-                    /** @noinspection PhpIncludeInspection */
-                    include($template_base_path . '/' . $brick_layout . '.php');
-
-                    $html = ob_get_clean();
-
-                }
+                $html = ob_get_clean();
 
             }
-
         }
-
         return $html;
-
     }
 
     /**

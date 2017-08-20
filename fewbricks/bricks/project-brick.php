@@ -25,9 +25,7 @@ class project_brick extends brick
      */
     public function __construct($name = '', $key = '')
     {
-
         parent::__construct($name, $key);
-
     }
 
     /**
@@ -35,54 +33,5 @@ class project_brick extends brick
      * Called after set_fields have been called.
      * Use to add any fields that every brick in the project should have.
      */
-    public function set_project_fields()
-    {
-
-    }
-
-    /**
-     * @param $data_key
-     * @param bool $value
-     * @return string
-     */
-    protected function demo_get_headline_html($data_key, $value = false)
-    {
-
-        $this->demo_set_headline_tag();
-
-        $headline = ($value !== false ? $value : $this->get_field($data_key));
-
-        $html = '';
-
-        if (!empty($headline)) {
-
-            $html .= '<' . self::$headline_tag . '>' . $headline . '</' . self::$headline_tag . '>';
-
-        }
-
-        return $html;
-
-    }
-
-    /**
-     *
-     */
-    protected function demo_set_headline_tag()
-    {
-
-        switch (self::$headline_tag) {
-
-            case 'h1' :
-
-                self::$headline_tag = 'h2';
-                break;
-
-            default :
-
-                self::$headline_tag = 'h1';
-
-        }
-
-    }
-
+    public function set_project_fields() {}
 }

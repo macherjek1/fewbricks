@@ -3,6 +3,7 @@
 namespace fewbricks;
 
 use fewbricks\helpers;
+use fewbricks\helpers\PathHelper as PathHelper;
 
 /**
  * Class fewbricks
@@ -70,12 +71,7 @@ class fewbricks {
         $fewbricks_lib_dir_path = __DIR__ . '/';
 
         require($fewbricks_lib_dir_path . 'helpers.php');
-
-        $project_files_base_path = helpers\get_template_path(apply_filters(
-            'fewbricks/project_files_base_path', 'fewbricks'
-        ));
-        self::$project_files_base_path = $project_files_base_path;
-
+        require($fewbricks_lib_dir_path . 'path-helper.php');        
         require($fewbricks_lib_dir_path . 'brick.php');
         require($fewbricks_lib_dir_path . 'acf/field-group.php');
         require($fewbricks_lib_dir_path . 'acf/layout.php');
@@ -84,9 +80,8 @@ class fewbricks {
 
         if (!helpers\use_acf_json() || $fewbricks_save_json === true) {
 
-            require($project_files_base_path . '/common-fields/init.php');
-            require($project_files_base_path . '/field-groups/init.php');
-
+            require(PathHelper::getInstance()->get_template('common-fields/init.php'));
+            require(PathHelper::getInstance()->get_template('field-groups/init.php'));
         }
 
         self::do_developer_mode();
@@ -97,7 +92,6 @@ class fewbricks {
      */
     private static function autoload($class)
     {
-
         $namespace_parts = explode('\\', $class);
 
         // Make sure that we are dealing with something in fewbricks
@@ -109,16 +103,11 @@ class fewbricks {
             if ($namespace_parts[1] === 'bricks') {
 
                 self::autoload_brick($file_name);
-
             } else {
                 // User wants a field
-
                 self::autoload_field($file_name);
-
             }
-
         }
-
     }
 
     /**
@@ -126,15 +115,15 @@ class fewbricks {
      */
     private static function autoload_brick($file_name)
     {
-        $path = self::$project_files_base_path . '/bricks/' . $file_name;
+        $path = PathHelper::getInstance()->get_template('bricks/' . $file_name);
 
         if(is_file($path)) {
             include($path);
         } else {
-            // wp_die('
-            //   <h1>Error message from Fewbricks.</h1>
-            //   <p>Could not locate brick file ' . $path . '.</p>
-            // ');
+            wp_die('
+              <h1>Error message from Fewbricks.</h1>
+              <p>Could not locate brick file ' . $path . '.</p>
+            ');
         }
     }
 
@@ -147,7 +136,7 @@ class fewbricks {
 
         // Lets first look at the custom lib directory in case custom fields were created
         // to overrule the one that came with Fewbricks.
-        $template_path = self::$project_files_base_path . '/acf/fields/' . $file_name;
+        $template_path = PathHelper::getInstance()->get_template('acf/fields/' . $file_name);
 
         if (is_file($template_path)) {
 

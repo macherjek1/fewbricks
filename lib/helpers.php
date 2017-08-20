@@ -60,16 +60,3 @@ function hide_acf_info()
 
 }
 
-function get_template_path($path) {
-
-  // Check if file is inside child theme
-  if(file_exists(get_stylesheet_directory() .'/' .$path)) {
-      return get_stylesheet_directory() .'/'. $path;
-    // Check if file is inside main theme
-  } elseif(file_exists(get_template_directory() .'/' .$path)) {
-        return get_template_directory() .'/'. $path;
-  }
-
-  // return plugin path
-  return plugin_dir_path(__FILE__) . '/' . $path;
-}
