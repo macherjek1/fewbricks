@@ -74,6 +74,9 @@ We use a flexible content Field for our Page Builder.
 
 ## Release History
 
+* 2.0.4
+  * Fixed a shortcode error
+
 * 2.0.3
   * Added our Page Builder to fewbricks
   * Hook renamed to fewbricks/visual-editor/flexible/set_fields
