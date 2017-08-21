@@ -1,5 +1,5 @@
 {
-  "name": "macherjek1/fewbricks",
+  "name": "macherjek1/mj-fewbricks",
   "type": "wordpress-plugin",
   "description": "Modular system for Advanced Custom Fields",
   "keywords": ["acf","advanced custom fields", "wordpress", "modules", "reusable"],
@@ -11,7 +11,13 @@
       "email": "b@folbert.com",
       "homepage": "http://folbert.com",
       "role": "Developer"
-    }
+    },
+    {
+	"name": "Kevin Regenrek",
+"email": "hello@regenrek.at",
+"homepage": "www.regenrek.at",
+"role": "Developer"
+}
   ],
   "require": {
     "php": ">=5.4.0",
