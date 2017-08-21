@@ -74,20 +74,13 @@ We use a flexible content Field for our Page Builder.
 
 ## Release History
 
-* 2.0.4
+* 1.0.0
+  * Initial Release
   * Fixed a shortcode error
-
-* 2.0.3
   * Added our Page Builder to fewbricks
   * Hook renamed to fewbricks/visual-editor/flexible/set_fields
-
-* 2.0.2
   * Fixed an issue where you can't define Bricks in Child Theme
-
-* 2.0.1
   * Version Bump
-
-* 2.0.0
 	* Added Child Theme Support
   * display => block as default
 

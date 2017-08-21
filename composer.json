@@ -13,10 +13,10 @@
       "role": "Developer"
     },
     {
-	"name": "Kevin Regenrek",
-"email": "hello@regenrek.at",
-"homepage": "http://www.regenrek.at",
-"role": "Developer"
+      "name": "Kevin Regenrek",
+      "email": "hello@regenrek.at",
+      "homepage": "http://www.regenrek.at",
+      "role": "Developer"
 }
   ],
   "require": {

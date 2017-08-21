@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: Fewbricks
-Plugin URI: https://github.com/macherjek1/fewbricks
+Plugin URI: https://github.com/macherjek1/mj-fewbricks
 Description: Fewbricks with Page Builder
 Author: Björn Folbert,Kevin Regenrek
-Version: 2.0.3
+Version: 1.0.0
 Author URI: http://folbert.com
 License: GPLv3
 */
