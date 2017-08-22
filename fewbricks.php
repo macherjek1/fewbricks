@@ -3,8 +3,8 @@
 Plugin Name: Fewbricks
 Plugin URI: https://github.com/macherjek1/mj-fewbricks
 Description: Fewbricks with Page Builder
-Author: Björn Folbert,Kevin Regenrek
-Version: 1.0.0
+Author: Bjรถrn Folbert,Kevin Regenrek
+Version: 1.0.1
 Author URI: http://folbert.com
 License: GPLv3
 */
@@ -21,7 +21,7 @@ require_once($fewbricks_lib_path . 'fewbricks.php');
 
 add_action('after_setup_theme', function() {
     fewbricks\fewbricks::construct();
-});
+},1);
 
 /**
  * Update related stuff
