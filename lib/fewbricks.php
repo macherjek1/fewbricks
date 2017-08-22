@@ -71,7 +71,7 @@ class fewbricks {
         $fewbricks_lib_dir_path = __DIR__ . '/';
 
         require($fewbricks_lib_dir_path . 'helpers.php');
-        require($fewbricks_lib_dir_path . 'path-helper.php');        
+        require($fewbricks_lib_dir_path . 'path-helper.php');
         require($fewbricks_lib_dir_path . 'brick.php');
         require($fewbricks_lib_dir_path . 'acf/field-group.php');
         require($fewbricks_lib_dir_path . 'acf/layout.php');
@@ -98,11 +98,18 @@ class fewbricks {
         if ($namespace_parts[0] === 'fewbricks') {
 
             $file_name = str_replace('_', '-', end($namespace_parts)) . '.php';
-
+            // 
+            // var_dump($namespace_parts);
+            // echo '<br /> <br />';
             // If are dealing with a brick
             if ($namespace_parts[1] === 'bricks') {
-
-                self::autoload_brick($file_name);
+                // bricks/<child_bricks> for example bricks/config
+                if(count($namespace_parts) > 3) {
+                  $namespace = str_replace('_', '-', $namespace_parts[2]);
+                  self::autoload_brick($namespace. '/'. $file_name);
+                } else {
+                  self::autoload_brick($file_name);
+                }
             } else {
                 // User wants a field
                 self::autoload_field($file_name);
