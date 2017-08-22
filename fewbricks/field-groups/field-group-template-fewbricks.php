@@ -30,12 +30,6 @@ $fewbricks_fg_location = apply_filters('mj/fewbricks/visual-editor/location', [
 //  * Make sure that you check out the bricks that we create instances of here to get a sense of what is going on.
 //  */
 
-
-// side configuration
-$fewbricks_fg = (new fewacf\field_group('Seiteneinstellungen', '1608171523a', $fewbricks_fg_location, 34));
-$fewbricks_fg->add_brick(new bricks\site_config('site-config', '1608171541a'));
-$fewbricks_fg->register();
-
 //zeile
 $fewbricks_fg = (new fewacf\field_group('Visual Editor', '1509111453p', $fewbricks_fg_location, 35));
 $fewbricks_fc = (new acf_fields\flexible_content('Visual Editor', 'visual_editor', '150901113c', [
