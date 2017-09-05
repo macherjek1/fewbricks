@@ -17,10 +17,18 @@
       "email": "hello@regenrek.at",
       "homepage": "http://www.regenrek.at",
       "role": "Developer"
-}
+    }
   ],
+  "repositories": {
+    "macherjek1/acf-field-randomstring": {
+       "type": "vcs",
+       "url": "git@github.com:macherjek1/acf-field-randomstring.git"	
+    }
+  },
   "require": {
     "php": ">=5.4.0",
-    "folbert/acf-fewbricks-hidden": ">=1.0"
-  }
+    "folbert/acf-fewbricks-hidden": ">=1.0",
+    "macherjek1/acf-field-randomstring": "~0.0.2"
+  },
+  "minimum-stability": "dev"
 }
