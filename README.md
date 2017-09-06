@@ -74,6 +74,9 @@ We use a flexible content Field for our Page Builder.
 
 ## Release History
 
+* 1.0.1
+  * Added macherjek1/acf-field-randomstring as dependency
+
 * 1.0.0
   * Initial Release
   * Fixed a shortcode error
