@@ -1,6 +1,6 @@
 {
   "name": "macherjek1/mj-fewbricks",
-  "type": "wordpress-plugin",
+  "type": "wordpress-muplugin",
   "description": "Modular system for Advanced Custom Fields",
   "keywords": ["acf","advanced custom fields", "wordpress", "modules", "reusable"],
   "homepage": "https://github.com/folbert/fewbricks",
@@ -19,16 +19,8 @@
       "role": "Developer"
     }
   ],
-  "repositories": {
-    "macherjek1/acf-field-randomstring": {
-       "type": "vcs",
-       "url": "git@github.com:macherjek1/acf-field-randomstring.git"	
-    }
-  },
   "require": {
-    "php": ">=5.4.0",
-    "folbert/acf-fewbricks-hidden": ">=1.0",
-    "macherjek1/acf-field-randomstring": "~0.0.1"
+    "php": ">=5.4.0"
   },
   "minimum-stability": "dev"
 }
