@@ -269,22 +269,6 @@ return true;
      */
     private static function add_fewbricks_hidden_activated_check()
     {
-
-        // ... but let's also check that acf-fewbricks-hidden really have been activated.
-        add_action('admin_init', function() {
-
-            if (!is_plugin_active('acf-fewbricks-hidden/acf-fewbricks-hidden.php')) {
-
-                add_action('admin_notices', function () {
-
-                    echo self::$messages['fewbricks_hidden_missing'];
-
-                });
-
-            }
-
-        });
-
     }
 
     /**
