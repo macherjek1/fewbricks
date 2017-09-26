@@ -252,24 +252,7 @@ class fewbricks {
      */
     private static function fewbricks_hidden_exists()
     {
-
-        $fewbricks_hidden_exists = file_exists(plugin_dir_path(__FILE__) . '../../acf-fewbricks-hidden/acf-fewbricks-hidden.php');
-
-        if(!$fewbricks_hidden_exists) {
-            // If acf-fewbricks-hidden is not where it's supposed to be. Note that this check does not tell us if
-            // acf-fewbricks-hidden is activated or not.
-
-            $fewbricks_hidden_exists = false;
-
-            add_action('admin_notices', function () {
-
-                echo self::$messages['fewbricks_hidden_missing'];
-
-            });
-
-        }
-
-        return $fewbricks_hidden_exists;
+return true;
 
     }
 
